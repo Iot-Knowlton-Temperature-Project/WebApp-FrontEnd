@@ -1,0 +1,22 @@
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 24px;
+  background-color: #ec3110;
+}
+
+top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 50px;
+  width: 100%;
+  padding: 16px;
+  background-color: #242520;
+  color: #ec3110;
+}
