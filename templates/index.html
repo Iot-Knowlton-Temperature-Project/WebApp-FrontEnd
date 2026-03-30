@@ -20,50 +20,77 @@
 
 <div class="content">
 
-    <div class="card">
+
+        <div class="card">
         <h2>Sensor 1</h2>
-        <p id="sense1-status">{{ sense1_status }}</p>
-        <p id="sense1_temp">Temperature: {{ sense1_temp }}°F</p>
-        <p id="sense1_hum">Humidity: {{ sense1_hum }}%</p>
-        <p id="sense1_last_seen">Last Updated: {{ sense1_last_seen }}</p>
+        <!-- <p id="sense1-status">{{ sense1_status }}</p> -->
+
+        {% if sense1_status == "Connected" %}
+            <div class="circle" style="background-color: green;"></div>
+        {% else %}
+            <div class="circle" style="background-color: red;"></div>
+        {% endif %}
+        <p id="sense1_temp">{{ sense1_temp }}°F</p>
+        <p id="sense1_hum">{{ sense1_hum }}%</p>
+        <p id="sense1_last_seen">{{ sense1_last_seen }}</p>
         <p>Location: Room 1</p>
-    </div>
+        </div>
 
-    <div class="card">
-        <h2>Sensor 2</h2>
-        <p id="sense2-status">{{ sense2_status }}</p>
-        <p id="sense2_temp">Temperature: {{ sense2_temp }}°F</p>
-        <p id="sense2_hum">Humidity: {{ sense2_hum }}%</p>
-        <p id="sense2_last_seen">Last Updated: {{ sense2_last_seen }}</p>
-        <p>Location: Room 2</p>
-    </div>
+        <div class="card">
+            <h2>Sensor 2</h2>
+            {% if sense2_status == "Connected" %}
+                <div class="circle" style="background-color: green;"></div>
+            {% else %}
+                <div class="circle" style="background-color: red;"></div>
+            {% endif %}
+            <p id="sense2_temp">{{ sense2_temp }}°F</p>
+            <p id="sense2_hum">{{ sense2_hum }}%</p>
+            <p id="sense2_last_seen">{{ sense2_last_seen }}</p>
+            <p>Location: Room 2</p>
+        </div>
 
-    <div class="card">
+
+        <div class="card">
         <h2>Sensor 3</h2>
-        <p id="sense3-status">{{ sense3_status }}</p>
-        <p id="sense3_temp">Temperature: {{ sense3_temp }}°F</p>
-        <p id="sense3_hum">Humidity: {{ sense3_hum }}%</p>
-        <p id="sense3_last_seen">Last Updated: {{ sense3_last_seen }}</p>
+        {% if sense3_status == "Connected" %}
+            <div class="circle" style="background-color: green;"></div>
+        {% else %}
+            <div class="circle" style="background-color: red;"></div>
+        {% endif %}
+        <p id="sense3_temp">{{ sense3_temp }}°F</p>
+        <p id="sense3_hum">{{ sense3_hum }}%</p>
+        <p id="sense3_last_seen">{{ sense3_last_seen }}</p>
         <p>Location: Room 3</p>
-    </div>
+        </div>
 
-    <div class="card">
+
+
+        <div class="card">
         <h2>Sensor 4</h2>
-        <p id="sense4-status">{{ sense4_status }}</p>
-        <p id="sense4_temp">Temperature: {{ sense4_temp }}°F</p>
-        <p id="sense4_hum">Humidity: {{ sense4_hum }}%</p>
-        <p id="sense4_last_seen">Last Updated: {{ sense4_last_seen }}</p>
+        {% if sense4_status == "Connected" %}
+            <div class="circle" style="background-color: green;"></div>
+        {% else %}
+            <div class="circle" style="background-color: red;"></div>
+        {% endif %}
+        <p id="sense4_temp">{{ sense4_temp }}°F</p>
+        <p id="sense4_hum">{{ sense4_hum }}%</p>
+        <p id="sense4_last_seen">{{ sense4_last_seen }}</p>
         <p>Location: Room 4</p>
-    </div>
+        </div>
 
-    <div class="card">
-        <h2>Sensor 5</h2>
-        <p id="sense5-status">{{ sense5_status }}</p>
-        <p id="sense5_temp">Temperature: {{ sense5_temp }}°F</p>
-        <p id="sense5_hum">Humidity: {{ sense5_hum }}%</p>
-        <p id="sense5_last_seen">Last Updated: {{ sense5_last_seen }}</p>
-        <p>Location: Room 5</p>
-    </div>
+        <div class="card">
+            <h2>Sensor 5</h2>
+            {% if sense5_status == "Connected" %}
+                <div class="circle" style="background-color: green;"></div>
+            {% else %}
+                <div class="circle" style="background-color: red;"></div>
+            {% endif %}
+            <p id="sense5_temp">{{ sense5_temp }}°F</p>
+            <p id="sense5_hum">{{ sense5_hum }}%</p>
+            <p id="sense5_last_seen">{{ sense5_last_seen }}</p>
+            <p>Location: Room 5</p>
+        </div>
+
 
 </div>
 
@@ -78,29 +105,29 @@ async function refreshSensorData() {
         const data = await response.json();
 
         document.getElementById("sense1-status").textContent = data.sense1_status;
-        document.getElementById("sense1_temp").textContent = `Temperature: ${data.sense1_temp}°F`;
-        document.getElementById("sense1_hum").textContent = `Humidity: ${data.sense1_hum}%`;
-        document.getElementById("sense1_last_seen").textContent = `Last Updated: ${data.sense1_last_seen}`;
+        document.getElementById("sense1_temp").textContent = `${data.sense1_temp}°F`;
+        document.getElementById("sense1_hum").textContent = `${data.sense1_hum}%`;
+        document.getElementById("sense1_last_seen").textContent =`${data.sense1_last_seen}`;
 
         document.getElementById("sense2-status").textContent = data.sense2_status;
-        document.getElementById("sense2_temp").textContent = `Temperature: ${data.sense2_temp}°F`;
-        document.getElementById("sense2_hum").textContent = `Humidity: ${data.sense2_hum}%`;
-        document.getElementById("sense2_last_seen").textContent = `Last Updated: ${data.sense2_last_seen}`;
+        document.getElementById("sense2_temp").textContent = `${data.sense2_temp}°F`;
+        document.getElementById("sense2_hum").textContent = `${data.sense2_hum}%`;
+        document.getElementById("sense2_last_seen").textContent = `${data.sense2_last_seen}`;
 
         document.getElementById("sense3-status").textContent = data.sense3_status;
-        document.getElementById("sense3_temp").textContent = `Temperature: ${data.sense3_temp}°F`;
-        document.getElementById("sense3_hum").textContent = `Humidity: ${data.sense3_hum}%`;
-        document.getElementById("sense3_last_seen").textContent = `Last Updated: ${data.sense3_last_seen}`;
+        document.getElementById("sense3_temp").textContent = `${data.sense3_temp}°F`;
+        document.getElementById("sense3_hum").textContent = `${data.sense3_hum}%`;
+        document.getElementById("sense3_last_seen").textContent = `${data.sense3_last_seen}`;
 
         document.getElementById("sense4-status").textContent = data.sense4_status;
-        document.getElementById("sense4_temp").textContent = `Temperature: ${data.sense4_temp}°F`;
-        document.getElementById("sense4_hum").textContent = `Humidity: ${data.sense4_hum}%`;
-        document.getElementById("sense4_last_seen").textContent = `Last Updated: ${data.sense4_last_seen}`;
+        document.getElementById("sense4_temp").textContent = `${data.sense4_temp}°F`;
+        document.getElementById("sense4_hum").textContent = `${data.sense4_hum}%`;
+        document.getElementById("sense4_last_seen").textContent = `${data.sense4_last_seen}`;
 
         document.getElementById("sense5-status").textContent = data.sense5_status;
-        document.getElementById("sense5_temp").textContent = `Temperature: ${data.sense5_temp}°F`;
-        document.getElementById("sense5_hum").textContent = `Humidity: ${data.sense5_hum}%`;
-        document.getElementById("sense5_last_seen").textContent = `Last Updated: ${data.sense5_last_seen}`;
+        document.getElementById("sense5_temp").textContent = `${data.sense5_temp}°F`;
+        document.getElementById("sense5_hum").textContent = `${data.sense5_hum}%`;
+        document.getElementById("sense5_last_seen").textContent = `${data.sense5_last_seen}`;
     } catch (_error) {
         // Keep existing UI values if polling fails.
     }
