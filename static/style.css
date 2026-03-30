@@ -1,77 +1,70 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    background-color: #445640;
     position: relative;
+    font-family: "Robotomono", monospace, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .headers {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-}
+    width: 100%;
+    height: 100%;
 
-button {
-    background-color: #242520;
-    color: #daab5c;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 100px;
-
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 20px;
-
+    background-color: #3f230d;
     border-style: solid;
-    border-color: #51626c;
+    border-color: #ffcb05;
     border-width: 5px;
-    border-radius: 10px;
+    border-right: 0px;
+    border-left: 0px;
+    border-top: 0px;
 
-    padding-left: 20px;
-    padding-right: 20px;
-
-    margin-top: 20px;
-    text-decoration: none;
+    font-family: "Robotomono", monospace, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
 }
 
-.headers a,
-.headers a:link,
-.headers a:visited,
-.headers a:active {
-  text-decoration: none;
+.headers img {
+    height: 100px;
+    width: 100px;
+    border: none;
+
+  
+}
+
+.headers button {
+    background-color: #3f230d;
+
+    width: 180px;
+    height: 90px;
+    font-size: 20px;
+    font-weight: bolder;
+
+    border-color: #C6b9AD;
+    border-radius: 5px;
+    border-width: 3px;
+    border-style: solid;
+
+    color: #ffcb05;
 }
 
 .topbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100px;
     width: 500px;
-    background-color: #242520;
 
-    border-style: solid;
-    border-color: #51626c;
-    border-width: 5px;
+    position: center;
+
+    border-width: 3px;
     border-radius: 10px;
 
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 20px;
-    color: #daab5c;
+    color: #ffcb05;
+    text-align: center;
 
+   
     padding-left: 20px;
-    padding-right: 20px;
-
-    margin-top: 20px;
-    margin-left: 200px;
-    margin-right: 200px;
+    padding-right: 20px;   
 }
 
 .content {
@@ -83,6 +76,10 @@ button {
     margin-top: 30px;
 }
 
+.content p {
+    color: white
+}
+
 .card {
     display: flex;
     justify-content: center;
@@ -90,17 +87,17 @@ button {
     flex-direction: column;
 
     height: fit-content;
-    width: 200%;
-    background-color: #242520;
+    width: 50%;
+    background-color: #3f230d;
 
     border-style: solid;
-    border-color: #51626c;
+    border-color: #9f9282;
     border-width: 5px;
     border-radius: 10px;
 
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Robotomono", monospace, Geneva, Tahoma, sans-serif;
     font-size: 20px;
-    color: #daab5c;
+    color: #ffcb05;
 
     padding-left: 20px;
     padding-right: 20px;
@@ -113,39 +110,48 @@ button {
     justify-content: center;
     align-items: center; 
     flex-direction: row;
+    
 
     height: fit-content;
-    width: 200%;
-    background-color: #242520;
+    width: 50%;
+    background-color: #3f230d;
 
     border-style: solid;
-    border-color: #51626c;
+    border-color: #9f9282;
     border-width: 5px;
     border-radius: 10px;
 
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Robotomono", monospace, Geneva, Tahoma, sans-serif;
     font-size: 20px;
-    color: #daab5c;
+    color: #ffcb05;
 
     padding-left: 20px;
     padding-right: 20px;
 
     margin-top: 20px;
+
+    
 }
 
 .stats {
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start; 
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
 
     height: fit-content;
-    width: 50%;
+    width: 30%;
 
-    margin-right: 50px;
+    margin-right: 150px;
 }
 
 img {
     max-width: 100%;
     height: 300px;
-}
+
+    border-style: solid;
+    border-color: #9f9282;
+    border-width: 5px;
+    border-radius: 10px;
+
+}    

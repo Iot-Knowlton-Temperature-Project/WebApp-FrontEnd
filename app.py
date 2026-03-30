@@ -1,3 +1,14 @@
+
+
+# Actual Temperature: ~70.2
+# Sensor 1: ~72.24 : Error: +2.04
+# Sensor 2: ~71.41 : Error: +1.21
+# Sensor 3: ~72.44 : Error: +2.24
+# Sensor 4: ~71.78 : Error: +1.58
+# Sensor 5: ~71.05 : Error: +0.85
+
+
+
 from flask import Flask, jsonify, make_response, render_template
 from sql_manager import query_sensor_statuses
 from datetime import datetime
