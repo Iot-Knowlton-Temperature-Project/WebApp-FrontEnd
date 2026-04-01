@@ -132,8 +132,8 @@ body {
 }
 
 .circle {
-  width: 100px;         /* Equal width and height for a perfect circle */
-  height: 100px;   
+  width: 50px;         /* Equal width and height for a perfect circle */
+  height: 50px;   
   border-style: solid;
   border-width: 3px;   /* Equal width and height for a perfect circle */
   border-radius: 50%;
