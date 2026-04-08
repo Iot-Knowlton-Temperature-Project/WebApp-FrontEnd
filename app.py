@@ -14,15 +14,16 @@ from sql_manager import query_sensor_statuses
 from datetime import datetime
 
 app = Flask(__name__)
+DEFAULT_STATUS = ("Unknown", "0", "0", "0")
 
 def get_data():
     statuses = query_sensor_statuses(timeout_seconds=15)
     return (
-        statuses.get(1, "Unknown"),
-        statuses.get(2, "Unknown"),
-        statuses.get(3, "Unknown"),
-        statuses.get(4, "Unknown"),
-        statuses.get(5, "Unknown"),
+        statuses.get(1, DEFAULT_STATUS),
+        statuses.get(2, DEFAULT_STATUS),
+        statuses.get(3, DEFAULT_STATUS),
+        statuses.get(4, DEFAULT_STATUS),
+        statuses.get(5, DEFAULT_STATUS),
     )
 
 @app.route("/")
@@ -68,34 +69,44 @@ def data():
 @app.route("/api/status")
 def api_status():
     statuses = query_sensor_statuses(timeout_seconds=15)
-    return jsonify({
-        "sense1_status": statuses.get(1, "Unknown")[0],
-        "sense1_last_seen": statuses.get(1, "Unknown")[1],
-        "sense1_temp": statuses.get(1, "Unknown")[2],
-        "sense1_hum": statuses.get(1, "Unknown")[3],
+    s1 = statuses.get(1, DEFAULT_STATUS)
+    s2 = statuses.get(2, DEFAULT_STATUS)
+    s3 = statuses.get(3, DEFAULT_STATUS)
+    s4 = statuses.get(4, DEFAULT_STATUS)
+    s5 = statuses.get(5, DEFAULT_STATUS)
 
-        "sense2_status": statuses.get(2, "Unknown")[0],
-        "sense2_last_seen": statuses.get(2, "Unknown")[1],
-        "sense2_temp": statuses.get(2, "Unknown")[2],
-        "sense2_hum": statuses.get(2, "Unknown")[3],
-        
-        "sense3_status": statuses.get(3, "Unknown")[0],
-        "sense3_last_seen": statuses.get(3, "Unknown")[1],
-        "sense3_temp": statuses.get(3, "Unknown")[2],
-        "sense3_hum": statuses.get(3, "Unknown")[3],
-        
-        "sense4_status": statuses.get(4, "Unknown")[0],
-        "sense4_last_seen": statuses.get(4, "Unknown")[1],
-        "sense4_temp": statuses.get(4, "Unknown")[2],
-        "sense4_hum": statuses.get(4, "Unknown")[3],
-        
-        "sense5_status": statuses.get(5, "Unknown")[0],
-        "sense5_last_seen": statuses.get(5, "Unknown")[1],
-        "sense5_temp": statuses.get(5, "Unknown")[2],
-        "sense5_hum": statuses.get(5, "Unknown")[3],
+    response = jsonify({
+        "sense1_status": s1[0],
+        "sense1_last_seen": s1[1],
+        "sense1_temp": s1[2],
+        "sense1_hum": s1[3],
+
+        "sense2_status": s2[0],
+        "sense2_last_seen": s2[1],
+        "sense2_temp": s2[2],
+        "sense2_hum": s2[3],
+
+        "sense3_status": s3[0],
+        "sense3_last_seen": s3[1],
+        "sense3_temp": s3[2],
+        "sense3_hum": s3[3],
+
+        "sense4_status": s4[0],
+        "sense4_last_seen": s4[1],
+        "sense4_temp": s4[2],
+        "sense4_hum": s4[3],
+
+        "sense5_status": s5[0],
+        "sense5_last_seen": s5[1],
+        "sense5_temp": s5[2],
+        "sense5_hum": s5[3],
 
         "checked_at": datetime.now().isoformat(timespec="seconds"),
     })
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)

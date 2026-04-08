@@ -24,14 +24,23 @@ def query_sensor_statuses(timeout_seconds=120):
             cursor.execute(
                 """
                 SELECT
-                    sensor_id,
-                    MAX(date_time) AS last_seen,
-                    TIMESTAMPDIFF(SECOND, MAX(date_time), NOW()) AS age_seconds,
-                    temperature,
-                    humidity
-                FROM weather
-                WHERE sensor_id IN (1, 2, 3, 4, 5)
-                GROUP BY sensor_id
+                    w.sensor_id,
+                    w.date_time AS last_seen,
+                    TIMESTAMPDIFF(SECOND, w.date_time, NOW()) AS age_seconds,
+                    w.temperature,
+                    w.humidity
+                FROM weather w
+                INNER JOIN (
+                    SELECT
+                        sensor_id,
+                        MAX(date_time) AS max_date_time
+                    FROM weather
+                    WHERE sensor_id IN (1, 2, 3, 4, 5)
+                    GROUP BY sensor_id
+                ) latest
+                    ON latest.sensor_id = w.sensor_id
+                    AND latest.max_date_time = w.date_time
+                ORDER BY w.sensor_id
                 """
             )
             rows = cursor.fetchall()

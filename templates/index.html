@@ -26,9 +26,9 @@
         <!-- <p id="sense1-status">{{ sense1_status }}</p> -->
 
         {% if sense1_status == "Connected" %}
-            <div class="circle" style="background-color: green;"></div>
+            <div id="sense1-circle" class="circle" style="background-color: green;"></div>
         {% else %}
-            <div class="circle" style="background-color: red;"></div>
+            <div id="sense1-circle" class="circle" style="background-color: red;"></div>
         {% endif %}
         <p id="sense1_temp">{{ sense1_temp }}°F</p>
         <p id="sense1_hum">{{ sense1_hum }}%</p>
@@ -39,9 +39,9 @@
         <div class="card">
             <h2>Sensor 2</h2>
             {% if sense2_status == "Connected" %}
-                <div class="circle" style="background-color: green;"></div>
+                <div id="sense2-circle" class="circle" style="background-color: green;"></div>
             {% else %}
-                <div class="circle" style="background-color: red;"></div>
+                <div id="sense2-circle" class="circle" style="background-color: red;"></div>
             {% endif %}
             <p id="sense2_temp">{{ sense2_temp }}°F</p>
             <p id="sense2_hum">{{ sense2_hum }}%</p>
@@ -53,9 +53,9 @@
         <div class="card">
         <h2>Sensor 3</h2>
         {% if sense3_status == "Connected" %}
-            <div class="circle" style="background-color: green;"></div>
+            <div id="sense3-circle" class="circle" style="background-color: green;"></div>
         {% else %}
-            <div class="circle" style="background-color: red;"></div>
+            <div id="sense3-circle" class="circle" style="background-color: red;"></div>
         {% endif %}
         <p id="sense3_temp">{{ sense3_temp }}°F</p>
         <p id="sense3_hum">{{ sense3_hum }}%</p>
@@ -68,9 +68,9 @@
         <div class="card">
         <h2>Sensor 4</h2>
         {% if sense4_status == "Connected" %}
-            <div class="circle" style="background-color: green;"></div>
+            <div id="sense4-circle" class="circle" style="background-color: green;"></div>
         {% else %}
-            <div class="circle" style="background-color: red;"></div>
+            <div id="sense4-circle" class="circle" style="background-color: red;"></div>
         {% endif %}
         <p id="sense4_temp">{{ sense4_temp }}°F</p>
         <p id="sense4_hum">{{ sense4_hum }}%</p>
@@ -81,9 +81,9 @@
         <div class="card">
             <h2>Sensor 5</h2>
             {% if sense5_status == "Connected" %}
-                <div class="circle" style="background-color: green;"></div>
+                <div id="sense5-circle" class="circle" style="background-color: green;"></div>
             {% else %}
-                <div class="circle" style="background-color: red;"></div>
+                <div id="sense5-circle" class="circle" style="background-color: red;"></div>
             {% endif %}
             <p id="sense5_temp">{{ sense5_temp }}°F</p>
             <p id="sense5_hum">{{ sense5_hum }}%</p>
@@ -104,30 +104,51 @@ async function refreshSensorData() {
 
         const data = await response.json();
 
-        document.getElementById("sense1-status").textContent = data.sense1_status;
-        document.getElementById("sense1_temp").textContent = `${data.sense1_temp}°F`;
-        document.getElementById("sense1_hum").textContent = `${data.sense1_hum}%`;
-        document.getElementById("sense1_last_seen").textContent =`${data.sense1_last_seen}`;
+        const setText = (id, value) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value;
+            }
+        };
 
-        document.getElementById("sense2-status").textContent = data.sense2_status;
-        document.getElementById("sense2_temp").textContent = `${data.sense2_temp}°F`;
-        document.getElementById("sense2_hum").textContent = `${data.sense2_hum}%`;
-        document.getElementById("sense2_last_seen").textContent = `${data.sense2_last_seen}`;
+        const setCircleStatus = (id, status) => {
+            const circle = document.getElementById(id);
+            if (!circle) {
+                return;
+            }
 
-        document.getElementById("sense3-status").textContent = data.sense3_status;
-        document.getElementById("sense3_temp").textContent = `${data.sense3_temp}°F`;
-        document.getElementById("sense3_hum").textContent = `${data.sense3_hum}%`;
-        document.getElementById("sense3_last_seen").textContent = `${data.sense3_last_seen}`;
+            circle.style.backgroundColor = status === "Connected" ? "green" : "red";
+        };
 
-        document.getElementById("sense4-status").textContent = data.sense4_status;
-        document.getElementById("sense4_temp").textContent = `${data.sense4_temp}°F`;
-        document.getElementById("sense4_hum").textContent = `${data.sense4_hum}%`;
-        document.getElementById("sense4_last_seen").textContent = `${data.sense4_last_seen}`;
+        setText("sense1-status", data.sense1_status);
+        setCircleStatus("sense1-circle", data.sense1_status);
+        setText("sense1_temp", `${data.sense1_temp}°F`);
+        setText("sense1_hum", `${data.sense1_hum}%`);
+        setText("sense1_last_seen", `${data.sense1_last_seen}`);
 
-        document.getElementById("sense5-status").textContent = data.sense5_status;
-        document.getElementById("sense5_temp").textContent = `${data.sense5_temp}°F`;
-        document.getElementById("sense5_hum").textContent = `${data.sense5_hum}%`;
-        document.getElementById("sense5_last_seen").textContent = `${data.sense5_last_seen}`;
+        setText("sense2-status", data.sense2_status);
+        setCircleStatus("sense2-circle", data.sense2_status);
+        setText("sense2_temp", `${data.sense2_temp}°F`);
+        setText("sense2_hum", `${data.sense2_hum}%`);
+        setText("sense2_last_seen", `${data.sense2_last_seen}`);
+
+        setText("sense3-status", data.sense3_status);
+        setCircleStatus("sense3-circle", data.sense3_status);
+        setText("sense3_temp", `${data.sense3_temp}°F`);
+        setText("sense3_hum", `${data.sense3_hum}%`);
+        setText("sense3_last_seen", `${data.sense3_last_seen}`);
+
+        setText("sense4-status", data.sense4_status);
+        setCircleStatus("sense4-circle", data.sense4_status);
+        setText("sense4_temp", `${data.sense4_temp}°F`);
+        setText("sense4_hum", `${data.sense4_hum}%`);
+        setText("sense4_last_seen", `${data.sense4_last_seen}`);
+
+        setText("sense5-status", data.sense5_status);
+        setCircleStatus("sense5-circle", data.sense5_status);
+        setText("sense5_temp", `${data.sense5_temp}°F`);
+        setText("sense5_hum", `${data.sense5_hum}%`);
+        setText("sense5_last_seen", `${data.sense5_last_seen}`);
     } catch (_error) {
         // Keep existing UI values if polling fails.
     }
